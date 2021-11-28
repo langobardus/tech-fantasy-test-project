@@ -1,0 +1,63 @@
+.short-event-card-pages {
+  margin: 20px;
+  font-size: 16px;
+  /* border-top: 1px solid #828eae;
+  border-left: 1px solid #828eae;
+  border-bottom: 1px solid #828eae; */
+  display: inline-flex;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+}
+
+.short-event-card-pages--span {
+  border-right: 1px solid #9ea0a4;
+  background-color: #fff;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.short-event-card-pages--span:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.short-event-card-pages--span:last-child {
+  border-radius: 0 4px 4px 0;
+  border-right: 0;
+}
+
+.short-event-card-pages--span.hidden {
+  display: none;
+}
+
+.short-event-card-pages--span.active {
+  background-color: #1a76d2;
+  border-right: 1px solid #1a76d2;
+  color: #fff;
+}
+.short-event-card-pages--dot {
+  background-color: #fff;
+  border-right: 1px solid #839cda;
+  height: 40px;
+  width: 80px;
+  color: #c4c1c1;
+  text-align: center;
+}
+.short-event-card-pages--dot.hidden {
+  display: none;
+}
+.short-event-card-pages-container {
+  clear: both;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.card-pages-dot {
+  background-color: #9ea0a4;
+  width: 5px;
+}
