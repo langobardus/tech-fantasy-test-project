@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { TPost } from 'types'
-import { IconButton, Paper, Stack } from '@mui/material'
+import { TUser } from 'types'
+import { Avatar, IconButton, Stack } from '@mui/material'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import EditIcon from '@mui/icons-material/Edit'
-import { DelateDialog } from '../User/DelateDialog'
 
 export type UserCardProps = {
-  user: TPost
+  user: TUser
   setOpenDelateDialog: (openDelateDialog: boolean) => void
+  setOpenEditDialog: (openEditDialog: boolean) => void
+  setSelectUserData: (userData: TUser) => void
 }
 export const UserCard: React.FC<UserCardProps> = ({
   user,
   setOpenDelateDialog,
+  setOpenEditDialog,
+  setSelectUserData,
 }) => {
   return (
     <Card
@@ -26,35 +27,49 @@ export const UserCard: React.FC<UserCardProps> = ({
         justifyContent: 'center',
       }}
     >
-      <CardContent>
+      <CardContent
+        sx={{
+          width: '100%',
+        }}
+      >
         <Typography
           sx={{
             fontSize: 14,
             display: 'flex',
             justifyContent: 'space-between',
+            width: '100%',
           }}
-          color="text.secondary"
           gutterBottom
         >
-          {`${user.id}`}
+          <Avatar src={user.avatar}>
+            {`${user.name.charAt(0)}${user.surname.charAt(0)}`}
+          </Avatar>
           <Stack direction="row" spacing={1}>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                setOpenEditDialog(true)
+                setSelectUserData(user)
+              }}
+            >
               <EditIcon />
             </IconButton>
-            <IconButton onClick={() => setOpenDelateDialog(true)}>
+            <IconButton
+              onClick={() => {
+                setOpenDelateDialog(true)
+                setSelectUserData(user)
+              }}
+            >
               <DeleteForeverIcon />
             </IconButton>
           </Stack>
         </Typography>
         <Typography variant="h5" component="div">
-          {user.title}
+          {`${user.name} ${user.surname}`}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {user.body}
+          {user.desc}
         </Typography>
-        <Typography variant="body2">
-          well meaning and kindly. a benevolent smile
-        </Typography>
+        <Typography variant="body2">{`id: ${user.id}`}</Typography>
       </CardContent>
     </Card>
   )

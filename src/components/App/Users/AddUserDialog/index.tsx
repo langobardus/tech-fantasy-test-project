@@ -6,27 +6,30 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
+import { TUser } from 'types'
 
-export type FormDialogProps = {
+export type AddUserDialogProps = {
   openDialog: boolean
   setOpenDialog: (openDialog: boolean) => void
+  setSelectUserDataHandler: (selectUserData: TUser) => void
+  addUserHandler: () => void
 }
-export const FormDialog: React.FC<FormDialogProps> = ({
+export const AddUserDialog: React.FC<AddUserDialogProps> = ({
   openDialog,
   setOpenDialog,
+  setSelectUserDataHandler,
+  addUserHandler,
 }) => {
   const [buttonSend, setButtonSend] = useState(false)
 
-  const [email, setEmail] = useState('')
-  const [emailValidated, setEmailValidated] = useState(false)
-  const emailValidateHandler = (val: string) => {
-    const re =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    setEmailValidated(re.test(val))
+  const [desc, setDesc] = useState('')
+  const [descValidated, setDescValidated] = useState(false)
+  const descValidateHandler = (val: string) => {
+    setDescValidated(val.length > 1 && val.length < 50)
   }
-  const setEmailHandler = (val: string) => {
-    setEmail(val)
-    emailValidateHandler(val)
+  const setDescHandler = (val: string) => {
+    setDesc(val)
+    descValidateHandler(val)
   }
 
   const [name, setName] = useState('')
@@ -39,36 +42,44 @@ export const FormDialog: React.FC<FormDialogProps> = ({
     nameValidateHandler(val)
   }
 
-  const [lastName, setLastName] = useState('')
-  const [lastNameValidated, setLastNameValidated] = useState(false)
-  const lastNameValidateHandler = (val: string) => {
-    setLastNameValidated(val.length > 1 && val.length < 50)
+  const [surname, setSurname] = useState('')
+  const [surnameValidated, setSurnameValidated] = useState(false)
+  const surnameValidateHandler = (val: string) => {
+    setSurnameValidated(val.length > 1 && val.length < 50)
   }
-  const setLastNameHandler = (val: string) => {
-    setLastName(val)
-    lastNameValidateHandler(val)
+  const setSurnameHandler = (val: string) => {
+    setSurname(val)
+    surnameValidateHandler(val)
   }
 
   const resetFormHandler = () => {
     setOpenDialog(false)
 
-    setEmail('')
+    setDesc('')
     setName('')
-    setLastName('')
+    setSurname('')
 
-    setEmailValidated(false)
+    setDescValidated(false)
     setNameValidated(false)
-    setLastNameValidated(false)
+    setSurnameValidated(false)
 
     setButtonSend(false)
   }
 
   const formValidate = () => {
     setButtonSend(true)
-    emailValidateHandler(email)
+    descValidateHandler(desc)
     nameValidateHandler(name)
-    setLastNameHandler(lastName)
-    if (emailValidated && nameValidated && lastNameValidated) resetFormHandler()
+    setSurnameHandler(surname)
+    if (descValidated && nameValidated && surnameValidated) {
+      setSelectUserDataHandler({
+        name,
+        surname,
+        desc,
+      })
+      addUserHandler()
+      resetFormHandler()
+    }
   }
 
   return (
@@ -79,19 +90,7 @@ export const FormDialog: React.FC<FormDialogProps> = ({
           <DialogContentText>
             Чтобы добавить пользователя - заполните, пожалуйста, все поля
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            error={!emailValidated && buttonSend}
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setEmailHandler(e.target.value)
-            }}
-          />
+
           <TextField
             id="name"
             error={!nameValidated && buttonSend}
@@ -100,21 +99,37 @@ export const FormDialog: React.FC<FormDialogProps> = ({
             type="text"
             fullWidth
             variant="standard"
+            value={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNameHandler(e.target.value)
             }
           />
           <TextField
             id="lastname"
-            error={!lastNameValidated && buttonSend}
+            error={!surnameValidated && buttonSend}
             margin="dense"
             label="Фамилия"
             type="text"
             fullWidth
             variant="standard"
+            value={surname}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setLastNameHandler(e.target.value)
+              setSurnameHandler(e.target.value)
             }
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="desc"
+            error={!descValidated && buttonSend}
+            label="Описание"
+            type="desc"
+            fullWidth
+            variant="standard"
+            value={desc}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setDescHandler(e.target.value)
+            }}
           />
         </DialogContent>
         <DialogActions>

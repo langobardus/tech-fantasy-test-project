@@ -1,4 +1,4 @@
-import { ActionTypes } from 'actions'
+import { ActionTypes, RESET } from 'actions'
 
 type InitialStateType = {
   pageCountSelect: number
@@ -17,7 +17,7 @@ export const paginationReducer = (
         ...state,
         pageCountSelect: action.pageCountSelect,
       }
-    case 'RESET':
+    case RESET:
       return initialState
     default:
       return state
