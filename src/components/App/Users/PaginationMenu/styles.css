@@ -1,9 +1,6 @@
 .short-event-card-pages {
   margin: 20px;
   font-size: 16px;
-  /* border-top: 1px solid #828eae;
-  border-left: 1px solid #828eae;
-  border-bottom: 1px solid #828eae; */
   display: inline-flex;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
@@ -54,7 +51,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .card-pages-dot {

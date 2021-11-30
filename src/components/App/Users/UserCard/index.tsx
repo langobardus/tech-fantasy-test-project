@@ -33,6 +33,7 @@ export const UserCard: React.FC<UserCardProps> = ({
         }}
       >
         <Typography
+          component="div"
           sx={{
             fontSize: 14,
             display: 'flex',
@@ -66,10 +67,12 @@ export const UserCard: React.FC<UserCardProps> = ({
         <Typography variant="h5" component="div">
           {`${user.name} ${user.surname}`}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography component="div" sx={{ mb: 1.5 }} color="text.secondary">
           {user.desc}
         </Typography>
-        <Typography variant="body2">{`id: ${user.id}`}</Typography>
+        <Typography component="div" variant="body2">
+          {`id: ${user.id}`}
+        </Typography>
       </CardContent>
     </Card>
   )

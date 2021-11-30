@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import axios from 'axios'
 import { SagaIterator } from 'redux-saga'
-import { fetchUsers, getUsersSuccess } from 'actions'
+import { fetchUsers } from 'actions'
 import { API_USERS } from '../constants'
 
 export function* editUserSaga(): SagaIterator {

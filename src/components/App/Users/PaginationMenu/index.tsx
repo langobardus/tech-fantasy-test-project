@@ -1,10 +1,8 @@
 import React from 'react'
 import './styles.css'
-// import FirstPageIcon from '@material-ui/icons/FirstPage'
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import { NUM_ITEMS_ON_PAGE } from '../../../../constants'
-// import LastPageIcon from '@material-ui/icons/LastPage'
 
 export type PaginationMenuProps = {
   setPageCountSelectHandler: (page: number) => void

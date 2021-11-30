@@ -40,13 +40,6 @@ export const Users: React.FC<UsersProps> = ({
   const [openDelateDialog, setOpenDelateDialog] = useState(false)
   const [openEditDialog, setOpenEditDialog] = useState(false)
 
-  const userDataEmpty: TUser = {
-    desc: '',
-    name: '',
-    surname: '',
-  }
-  // const [selectUserData, setSelectUserData] = useState(userDataEmpty)
-
   const usersMap = []
   const startItem = pageCountSelect * NUM_ITEMS_ON_PAGE
   const stopItem =
