@@ -26,7 +26,7 @@ export const EditUserDialog: React.FC<EditUserDialogProps> = ({
   const [desc, setDesc] = useState('')
   const [descValidated, setDescValidated] = useState(false)
   const descValidateHandler = (val: string) => {
-    setDescValidated(val.length > 1 && val.length < 50)
+    setDescValidated(val.length > 1 && val.length < 500)
   }
   const setDescHandler = (val: string) => {
     setDesc(val)
