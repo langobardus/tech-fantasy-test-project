@@ -42,7 +42,7 @@ export const UserCard: React.FC<UserCardProps> = ({
           }}
           gutterBottom
         >
-          <Avatar src={user.avatar}>
+          <Avatar src={user.avatar} sx={{ backgroundColor: '#f79393' }}>
             {`${user.name.charAt(0)}${user.surname.charAt(0)}`}
           </Avatar>
           <Stack direction="row" spacing={1}>
